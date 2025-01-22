@@ -5,6 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static ConsoleApp5.AtvaltOOP;
 
+/*
+ * A megadott bináris számot átváltja tízes alapú számmá és vissza.
+ * Metódusok:
+ * -Konstruktor
+ * - Szám input stringként. Megjegyzés: Mivel lehet olyan decimális szám, amely csak nullából és egyesből áll, ezért
+ * 
+ */
+
 namespace ConsoleApp1
 {
     internal class Program

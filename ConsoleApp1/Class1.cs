@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,51 +11,64 @@ namespace ConsoleApp5
     {
         public class Atvalt
         {
-            private int eredmeny;
+            string eredmeny=string.Empty;
+            int decSzam = 0;
 
+            public Atvalt() {}
 
-            public Atvalt()
+            public Atvalt(string szam)
             {
-                eredmeny = 0;
+                if (isBinaris(szam)) binarisToDecimalis(szam);
+                else if (isDecimal(szam)) DecimalToBinaris(szam);
+                else throw new FormatException("A megadott adat nem szám");
             }
 
 
-            public void SetSzam(int szam)
+            private void DecimalToBinaris(string szam)
             {
-                eredmeny = szam;
-            }
-
-
-            public void Atvalto()
-            {
-
-                if (IsBinary(eredmeny.ToString()))
+                while (decSzam > 0)
                 {
-                    eredmeny = Convert.ToInt32(eredmeny.ToString(), 2);
-                }
-                else
-                {
-
-                    eredmeny = Convert.ToInt32(eredmeny.ToString(), 2);
+                    eredmeny = decSzam % 2 + eredmeny;
+                    decSzam /= 2;
                 }
             }
 
-            public int GetEredmeny()
+            private bool isDecimal(string szam)
             {
-                return eredmeny;
+                bool eredm = true;
+                try
+                {
+                    decSzam = Math.Abs(Convert.ToInt32(szam));
+                }
+                catch
+                {
+                    eredm = false;
+                }
+                return eredm;
             }
 
-            private bool IsBinary(string input)
+            private void binarisToDecimalis(string szam)
             {
-                foreach (char c in input)
+                int j = 1;
+                for (int i = szam.Length-1; i>0; i--)
                 {
-                    if (c != '0' && c != '1')
-                    {
-                        return false;
-                    }
+                    decSzam += Convert.ToInt32(szam[i]) * j;
+                    j *= 2;
                 }
-                return true;
             }
+
+            private bool isBinaris(string szam)
+            {
+                bool eredm = true;
+                if (szam[0]=='0')
+                    for (int i = 1; i < szam.Length; i++)
+                        if (szam[i] != '0' && szam[i] != '1') {
+                            eredm = false;
+                            break;
+                        }
+                return eredm;
+            }
+            
         }
     }
 }

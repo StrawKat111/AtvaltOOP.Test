@@ -55,7 +55,7 @@ namespace AtvaltOOP
             }
         }
 
-        private bool isBinaris(string szam)
+        public bool isBinaris(string szam)
         {
             bool eredm = true;
             if (szam[0] == '0')

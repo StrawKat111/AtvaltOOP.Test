@@ -4,6 +4,7 @@ using System;
 
 namespace AtvaltOOP.Tests
 {
+    [TestClass]
     public class AtvaltTests
     {
         [TestMethod]
